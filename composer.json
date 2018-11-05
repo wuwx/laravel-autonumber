@@ -1,18 +1,23 @@
 {
-    "name": "alfa6661/laravel-autonumber",
+    "name": "wuwx/laravel-autonumber",
     "description": "Laravel package to create autonumber for Eloquent model",
     "keywords": [
         "laravel",
         "eloquent",
         "autonumber"
     ],
-    "homepage": "https://github.com/alfa6661/laravel-autonumber",
+    "homepage": "https://github.com/wuwx/laravel-autonumber",
     "license": "MIT",
     "authors": [
         {
             "name": "Alfa Adhitya",
             "email": "alfa2159@gmail.com"
+        },
+	{
+            "name": "Wu Weixin",
+            "email": "wuweixin@gmail.com"
         }
+
     ],
     "require": {
         "php": ">=5.6.4 || ^7.0",

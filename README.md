@@ -1,9 +1,9 @@
 # Laravel AutoNumber
 
-[![Latest Stable Version](https://poser.pugx.org/alfa6661/laravel-autonumber/v/stable)](https://packagist.org/packages/alfa6661/laravel-autonumber)
-[![Total Downloads](https://poser.pugx.org/alfa6661/laravel-autonumber/downloads)](https://packagist.org/packages/alfa6661/laravel-autonumber)
+[![Latest Stable Version](https://poser.pugx.org/wuwx/laravel-autonumber/v/stable)](https://packagist.org/packages/wuwx/laravel-autonumber)
+[![Total Downloads](https://poser.pugx.org/wuwx/laravel-autonumber/downloads)](https://packagist.org/packages/wuwx/laravel-autonumber)
 [![StyleCI](https://styleci.io/repos/99206904/shield)](https://styleci.io/repos/99206904)
-[![License](https://poser.pugx.org/alfa6661/laravel-autonumber/license)](https://packagist.org/packages/alfa6661/laravel-autonumber)
+[![License](https://poser.pugx.org/wuwx/laravel-autonumber/license)](https://packagist.org/packages/wuwx/laravel-autonumber)
 
 
 Laravel package to create autonumber for Eloquent model
@@ -13,7 +13,7 @@ Laravel package to create autonumber for Eloquent model
 You can install the package via composer:
 
 ```
-composer require alfa6661/laravel-autonumber
+composer require wuwx/laravel-autonumber
 ```
 
 Register the ServiceProvider in `config/app.php`

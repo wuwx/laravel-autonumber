@@ -1,10 +1,10 @@
 <?php
 
-namespace Alfa6661\AutoNumber;
+namespace Wuwx\LaravelAutoNumber;
 
-use Alfa6661\AutoNumber\Models\AutoNumber as AutoNumberModel;
 use Illuminate\Database\Eloquent\Model;
 use InvalidArgumentException;
+use Wuwx\LaravelAutoNumber\Models\AutoNumber as AutoNumberModel;
 
 class AutoNumber
 {

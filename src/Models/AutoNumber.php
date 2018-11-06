@@ -1,6 +1,6 @@
 <?php
 
-namespace Alfa6661\AutoNumber\Models;
+namespace Wuwx\LaravelAutoNumber\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

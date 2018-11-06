@@ -1,9 +1,9 @@
 <?php
 
-namespace Alfa6661\AutoNumber\Observers;
+namespace Wuwx\LaravelAutoNumber\Observers;
 
-use Alfa6661\AutoNumber\AutoNumber;
 use Illuminate\Database\Eloquent\Model;
+use Wuwx\LaravelAutoNumber\AutoNumber;
 
 class AutoNumberObserver
 {

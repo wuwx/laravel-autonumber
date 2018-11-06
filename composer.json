@@ -27,7 +27,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Alfa6661\\AutoNumber\\": "src"
+            "Wuwx\\LaravelAutoNumber\\": "src"
         }
     },
     "minimum-stability": "dev",
@@ -35,7 +35,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Alfa6661\\AutoNumber\\AutoNumberServiceProvider"
+                "Wuwx\\LaravelAutoNumber\\AutoNumberServiceProvider"
             ]
         }
     }

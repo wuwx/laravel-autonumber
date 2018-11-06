@@ -1,8 +1,8 @@
 <?php
 
-namespace Alfa6661\AutoNumber;
+namespace Wuwx\LaravelAutoNumber;
 
-use Alfa6661\AutoNumber\Observers\AutoNumberObserver;
+use Wuwx\LaravelAutoNumber\Observers\AutoNumberObserver;
 
 trait AutoNumberTrait
 {

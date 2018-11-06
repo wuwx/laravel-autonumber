@@ -21,14 +21,14 @@ Register the ServiceProvider in `config/app.php`
 ```php
 'providers' => [
     // ...
-    Alfa6661\AutoNumber\AutoNumberServiceProvider::class,
+    Wuwx\LaravelAutoNumber\AutoNumberServiceProvider::class,
 ],
 ```
 
 Publish the default configuration
 
 ```
-php artisan vendor:publish --provider='Alfa6661\AutoNumber\AutoNumberServiceProvider'
+php artisan vendor:publish --provider='Wuwx\LaravelAutoNumber\AutoNumberServiceProvider'
 ```
 
 Running migration
@@ -39,13 +39,13 @@ php artisan migrate
 
 # Usage
 
-Your Eloquent models should use the `Alfa6661\AutoNumber\AutoNumberTrait` trait
+Your Eloquent models should use the `Wuwx\LaravelAutoNumber\AutoNumberTrait` trait
 
 The trait contains an abstract method `getAutoNumberOptions()` that you must implement yourself.
 
 
 ```php
-use Alfa6661\AutoNumber\AutoNumberTrait;
+use Wuwx\LaravelAutoNumber\AutoNumberTrait;
     
 class Order extends Model
 {

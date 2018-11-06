@@ -1,9 +1,9 @@
 <?php
 
-namespace Alfa6661\AutoNumber;
+namespace Wuwx\LaravelAutoNumber;
 
-use Alfa6661\AutoNumber\Observers\AutoNumberObserver;
 use Illuminate\Support\ServiceProvider;
+use Wuwx\LaravelAutoNumber\Observers\AutoNumberObserver;
 
 class AutoNumberServiceProvider extends ServiceProvider
 {

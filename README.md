@@ -61,8 +61,8 @@ class Order extends Model
         return [
             'order_number' => [
                 'format' => 'SO.?', // autonumber format. '?' will be replaced with the generated number.
-                'length' => 5 // The number of digits in an autonumber
-            ]
+                'length' => 5, // The number of digits in an autonumber
+            ],
         ];
     }
 
@@ -78,9 +78,9 @@ public function getAutoNumberOptions()
         'order_number' => [
             'format' => function () {
                 return 'SO/' . date('Ymd') . '/?'; // autonumber format. '?' will be replaced with the generated number.
-            }
-            'length' => 5 // The number of digits in the autonumber
-        ]
+            },
+            'length' => 5, // The number of digits in the autonumber
+        ],
     ];
 }
 ```

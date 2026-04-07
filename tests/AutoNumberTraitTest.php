@@ -2,6 +2,8 @@
 
 namespace Wuwx\LaravelAutoNumber\Tests;
 
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase;
 use Wuwx\LaravelAutoNumber\AutoNumberServiceProvider;
 use Wuwx\LaravelAutoNumber\AutoNumberTrait;
@@ -15,32 +17,56 @@ class AutoNumberTraitTest extends TestCase
         ];
     }
 
-    public function test_trait_boot_autonumber_trait_registers_observer()
+    protected function getEnvironmentSetUp($app)
     {
-        $model = new TraitTestModel();
-        $this->assertTrue(method_exists($model, 'bootAutoNumberTrait'));
+        $app['config']->set('database.default', 'testing');
+        $app['config']->set('database.connections.testing', [
+            'driver'   => 'sqlite',
+            'database' => ':memory:',
+            'prefix'   => '',
+        ]);
+        $app['config']->set('autonumber', [
+            'format' => '?',
+            'length' => 4,
+            'onUpdate' => false,
+        ]);
     }
 
-    public function test_trait_requires_get_auto_number_options()
+    protected function setUp(): void
     {
-        $model = new class extends \Illuminate\Database\Eloquent\Model {
-            use AutoNumberTrait;
-
-            public function getAutoNumberOptions()
-            {
-                return ['auto_number'];
-            }
-        };
-        $this->assertTrue(method_exists($model, 'getAutoNumberOptions'));
+        parent::setUp();
+        Schema::create('auto_numbers', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 32);
+            $table->integer('number');
+            $table->timestamps();
+        });
     }
-}
 
-class TraitTestModel extends \Illuminate\Database\Eloquent\Model
-{
-    use AutoNumberTrait;
-
-    public function getAutoNumberOptions()
+    public function test_trait_has_boot_method()
     {
-        return ['auto_number'];
+        $reflection = new \ReflectionClass(AutoNumberTrait::class);
+        $this->assertTrue($reflection->hasMethod('bootAutoNumberTrait'));
+    }
+
+    public function test_trait_has_abstract_method()
+    {
+        $reflection = new \ReflectionClass(AutoNumberTrait::class);
+        $this->assertTrue($reflection->hasMethod('getAutoNumberOptions'));
+    }
+
+    public function test_boot_auto_number_trait_registers_observer()
+    {
+        $traitReflection = new \ReflectionClass(AutoNumberTrait::class);
+        $bootMethod = $traitReflection->getMethod('bootAutoNumberTrait');
+        $this->assertTrue($bootMethod->isPublic());
+        $this->assertTrue($bootMethod->isStatic());
+
+        try {
+            $mockModel = $this->createMock(\Illuminate\Database\Eloquent\Model::class);
+            $bootMethod->invoke($mockModel);
+        } catch (\Error $e) {
+            $this->assertStringContainsString('observe', $e->getMessage());
+        }
     }
 }

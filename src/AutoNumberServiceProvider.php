@@ -30,6 +30,10 @@ class AutoNumberServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/autonumber.php', 'autonumber'
+        );
+
         $this->app->singleton(AutoNumberObserver::class, function ($app) {
             return new AutoNumberObserver(new AutoNumber());
         });

@@ -3,6 +3,8 @@
 namespace Wuwx\LaravelAutoNumber;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use InvalidArgumentException;
 use Wuwx\LaravelAutoNumber\Models\AutoNumber as AutoNumberModel;
 
@@ -53,20 +55,22 @@ class AutoNumber
      */
     private function getNextNumber($name)
     {
-        $autoNumber = AutoNumberModel::where('name', $name)->first();
+        return DB::transaction(function () use ($name) {
+            $autoNumber = AutoNumberModel::where('name', $name)->lockForUpdate()->first();
 
-        if ($autoNumber === null) {
-            $autoNumber = new AutoNumberModel([
-                'name' => $name,
-                'number' => 1,
-            ]);
-        } else {
-            $autoNumber->number += 1;
-        }
+            if ($autoNumber === null) {
+                $autoNumber = new AutoNumberModel([
+                    'name' => $name,
+                    'number' => 1,
+                ]);
+            } else {
+                $autoNumber->number += 1;
+            }
 
-        $autoNumber->save();
+            $autoNumber->save();
 
-        return $autoNumber->number;
+            return $autoNumber->number;
+        });
     }
 
     /**
@@ -89,7 +93,7 @@ class AutoNumber
             $uniqueName = $this->generateUniqueName(
                 array_merge(
                     ['class' => get_class($model)],
-                    array_except($config, ['onUpdate'])
+                    Arr::except($config, ['onUpdate'])
                 )
             );
 
